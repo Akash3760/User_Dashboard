@@ -1,0 +1,21 @@
+# Environment variables
+.env                   # ignore all .env files
+
+# Python / Django
+BACKEND/venv/           # virtual environment
+**/__pycache__/          # ignore all __pycache__ folders recursively
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Node / React
+FRONTEND/node_modules/   # React dependencies
+FRONTEND/dist/           # React build files
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
