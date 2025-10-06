@@ -131,7 +131,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# For development: where you put your custom static files
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # outer dashboard/static
+]
+
+# For production: where collectstatic will gather all static files
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -157,13 +165,102 @@ REST_FRAMEWORK = {
     ],
 }
 
-# Jazzmin admin theme
-JAZZMIN_UI_TWEAKS = {
-    "theme": "lux",
-    "navbar_small_text": False,
-    "footer_small_text": False,
-    "body_small_text": False,
-    "brand_small_text": False,
-    "brand_colour": "primary",
-    "accent": "primary",
+# ==========================================
+#  JAZZMIN SETTINGS — Admin
+# ==========================================
+
+JAZZMIN_SETTINGS = {
+    # ----- Branding -----
+    "site_logo": "images/logo.png",
+    "site_icon": "images/logo.png",
+    "site_brand": "My Dashboard",
+    "site_title": "My Dashboard Admin",
+    "welcome_sign": "Welcome to My Dashboard Admin Portal",
+
+    # ----- Navigation -----
+    "show_sidebar": True,
+    "navigation_expanded": True,
+
+    # ----- App Icons -----
+    "icons": {
+        "auth.User": "fas fa-user",
+        "users.Users": "fas fa-user-circle",
+        # "admin_page.billingData": "fas fa-file-invoice",
+        # "admin_page.billingLog": "fas fa-file-alt",
+        "users.Role": "fas fa-user-tag",
+        "users.SubRole": "fas fa-building",
+        # "admin_page.ValueStream": "fas fa-stream",
+        # "chargenumberlookup.ChargeNumberInfo": "fas fa-file-invoice-dollar",
+        # "chargenumberlookup.PageVisit": "fas fa-chart-line",
+    },
+
+    # ----- Top Menu Links -----
+    "topmenu_links": [
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "User Login", "url": "/", "new_window": True},
+        {
+            "name": "Support",
+            "url": "https://intranet.collins/support",
+            "new_window": True,
+        },
+    ],
+
+    # ----- UI Builder -----
+    "show_ui_builder": True,
 }
+
+# ==========================================
+# JAZZMIN UI TWEAKS
+# ==========================================
+
+JAZZMIN_UI_TWEAKS = {
+    # ----- Text & Size -----
+    "navbar_small_text": True,
+    "footer_small_text": True,
+    "body_small_text": True,
+    "brand_small_text": True,
+
+    # ----- Colors & Theme -----
+    "brand_colour": False,
+    "accent": "accent-primary",
+    "navbar": "navbar-white navbar-light",
+    "navbar_bg": "navbar-dark bg-primary",
+    "footer_bg": "bg-light",
+    "theme": "lux",               # Light corporate theme
+    "dark_mode_theme": "cyborg",  # Optional dark mode
+
+    # ----- Layout -----
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": True,
+    "sidebar_fixed": True,
+
+    # ----- Sidebar -----
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+
+    # ----- Buttons -----
+    "button_classes": {
+        "primary": "btn-outline-primary",
+        "secondary": "btn-outline-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success",
+    },
+
+    # ----- Visibility -----
+    "show_ui_builder": True,
+    "show_sidebar_toggle": True,
+    "show_topmenu": True,
+    "show_footer": True,
+
+    # ----- Actions -----
+    "actions_sticky_top": True,
+}
+
