@@ -9,6 +9,9 @@ BACKEND/venv/           # virtual environment
 *.pyd
 *.log
 
+# Ignore Django collected static files
+staticfiles/
+
 # Node / React
 FRONTEND/node_modules/   # React dependencies
 FRONTEND/dist/           # React build files
