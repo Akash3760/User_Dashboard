@@ -7,4 +7,6 @@ urlpatterns = [
     path('me/', views.current_user, name='current-user'),  # get current logged-in user
     path('roles/', views.get_roles, name='get_roles'),
     path('subroles/', views.get_subroles, name='get_subroles'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+
 ]
